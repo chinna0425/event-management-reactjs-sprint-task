@@ -4,6 +4,8 @@
 
 # Live Link
 
+(https://event-management-tas.netlify.app/login)
+
 # Event Management React App
 
 A modern event management web application built with React, Redux, and React Router. Users can sign up, log in, and discover recommended shows and upcoming events tailored for them.
