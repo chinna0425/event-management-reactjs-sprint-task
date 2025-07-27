@@ -11,8 +11,7 @@ const fallbackImages = [
 	"https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80",
 	"https://images.unsplash.com/photo-1475724017904-b712052c192a?auto=format&fit=crop&w=400&q=80",
 ];
-
-const API_KEY = "jkfwi22mfknalm";
+const API_KEY = "FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ=="
 
 const Recommended = () => {
 	const [recommended, setRecommended] = useState([]);
