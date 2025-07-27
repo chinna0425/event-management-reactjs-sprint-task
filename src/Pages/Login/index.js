@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/slices/authSlice";
 import "./index.css";
@@ -60,6 +60,9 @@ const Login = () => {
 				{error && <p className="error">{error}</p>}
 				<button type="submit">Login</button>
 			</form>
+			<p className="signup-link">
+				Don't have an account? <Link to="/signup">Sign up</Link>
+			</p>
 		</div>
 	);
 };
