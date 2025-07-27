@@ -1,0 +1,92 @@
+.upcoming-section {
+	padding: 2rem 1rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.upcoming-section h2 {
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	color: #333;
+}
+
+.upcoming-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 1.5rem;
+}
+
+.upcoming-card {
+	background-color: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	transition: transform 0.2s ease;
+}
+
+.upcoming-card:hover {
+	transform: translateY(-4px);
+}
+
+.upcoming-card img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+}
+
+.event-info {
+	padding: 1rem;
+}
+
+.event-info h4 {
+	font-size: 1.2rem;
+	margin: 0 0 0.5rem;
+	color: #222;
+}
+
+.event-info p {
+	font-size: 0.9rem;
+	color: #555;
+	margin: 0.3rem 0;
+}
+
+.loading {
+	text-align: center;
+	margin-top: 1rem;
+	font-size: 1rem;
+	color: #666;
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+	.event-info h4 {
+		font-size: 1rem;
+	}
+
+	.event-info p {
+		font-size: 0.85rem;
+	}
+
+	.upcoming-section h2 {
+		font-size: 1.5rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.upcoming-card img {
+		height: 160px;
+	}
+
+	.event-info {
+		padding: 0.8rem;
+	}
+
+	.event-info h4 {
+		font-size: 0.95rem;
+	}
+
+	.event-info p {
+		font-size: 0.8rem;
+	}
+}
