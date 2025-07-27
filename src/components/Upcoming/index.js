@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import "./index.css";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ const fallbackImages = [
 	"https://images.unsplash.com/photo-1475724017904-b712052c192a?auto=format&fit=crop&w=400&q=80",
 ];
 
-const API_KEY = "FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ=="
+const API_KEY = "FOX643kbHEAkyPbdd8nwNLkekHcL4z0hzWBGCd64Ur7mAzFuRCHeyQ==";
 
 const Upcoming = () => {
 	const [events, setEvents] = useState([]);
@@ -19,32 +19,35 @@ const Upcoming = () => {
 	const [loading, setLoading] = useState(false);
 	const bottomRef = useRef();
 
+	const fetchEvents = useCallback(
+		async (pageNo) => {
+			setLoading(true);
+			try {
+				const res = await axios.get(
+					`https://gg-backend-assignment.azurewebsites.net/api/Events?code=${API_KEY}&type=upcoming&page=${pageNo}`
+				);
+
+				const cleanedEvents = res.data.events.map((event, idx) => {
+					return {
+						...event,
+						img_url:
+							fallbackImages[(events.length + idx) % fallbackImages.length],
+					};
+				});
+
+				setEvents((prev) => [...prev, ...cleanedEvents]);
+			} catch (error) {
+				console.error("Error loading upcoming events:", error);
+			} finally {
+				setLoading(false);
+			}
+		},
+		[events.length]
+	); // Only re-create fetchEvents if events.length changes
+
 	useEffect(() => {
 		fetchEvents(page);
-	}, [page]);
-
-	const fetchEvents = async (pageNo) => {
-		setLoading(true);
-		try {
-			const res = await axios.get(
-				`https://gg-backend-assignment.azurewebsites.net/api/Events?code=${API_KEY}&type=upcoming&page=${pageNo}`
-			);
-
-			const cleanedEvents = res.data.events.map((event, idx) => {
-				return {
-					...event,
-					img_url:
-						fallbackImages[(events.length + idx) % fallbackImages.length],
-				};
-			});
-
-			setEvents((prev) => [...prev, ...cleanedEvents]);
-		} catch (error) {
-			console.error("Error loading upcoming events:", error);
-		} finally {
-			setLoading(false);
-		}
-	};
+	}, [page, fetchEvents]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
